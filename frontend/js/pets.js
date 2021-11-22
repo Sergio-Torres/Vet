@@ -42,7 +42,8 @@ async function showPets(){
         
         
     }catch(error){
-        throw error;
+        console.log({error});
+        $(".alert").show();
     }
     
    
@@ -79,7 +80,8 @@ async function sendData(event){
         }
 
     }catch(error){
-        throw error;
+        console.log({error});
+        $(".alert").show();
     }
     
     
@@ -117,7 +119,8 @@ function deletePet(indice){
                 resetModal();
             }    
         }catch(error){
-            throw error;
+            console.log({error});
+            $(".alert").show();
         }       
     }
 }
