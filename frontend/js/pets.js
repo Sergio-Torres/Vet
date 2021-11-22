@@ -5,57 +5,84 @@ const owner = document.getElementById("owner");
 const indice = document.getElementById("index");
 const form = document.getElementById("form");
 const btnSave = document.getElementById("btnSave");
+const url = "http://localhost:5000/pets";
 
-let pets = [
-    {
-        species: "Cat",
-        name: "machas",
-        owner: "Andres",
-    },
-    {
-        species: "Bird",
-        name: "willybird",
-        owner: "Sofia",
+let pets = [];
+
+async function showPets(){
+    try{
+        const answer = await fetch(url);
+        const serverPets = await answer.json();
+        if(Array.isArray(serverPets)){
+            pets = serverPets;
+        }
+        if(pets.length>0){
+            const htmlPets = pets.map((pet, index)=>` 
+            <tr>
+            <th scope="row">${index}</th>
+                <td>${pet.species}</td>
+                <td>${pet.name}</td>
+                <td>${pet.owner}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-info edit" ><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger deletePet"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </td>
+            </tr>`).join("");
+            listPet.innerHTML = htmlPets;
+            Array.from(document.getElementsByClassName("edit")).forEach((btnEdit, index)=>btnEdit.onclick = edit(index));
+            Array.from(document.getElementsByClassName("deletePet")).forEach((btnDelete, index)=>btnDelete.onclick = deletePet(index));
+            return;
+        }
+
+        listPet.innerHTML = ` <tr>
+                <td colspan="5">No pets</td>
+            </tr>`;
+        
+        
+    }catch(error){
+        throw error;
     }
-];
-
-function showPets(){
-    const htmlPets = pets.map((pet, index)=>` 
-        <tr>
-        <th scope="row">${index}</th>
-            <td>${pet.species}</td>
-            <td>${pet.name}</td>
-            <td>${pet.owner}</td>
-            <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info edit" ><i class="fas fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger deletePet"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-        </tr>`).join("");
-        listPet.innerHTML = htmlPets;
-        Array.from(document.getElementsByClassName("edit")).forEach((btnEdit, index)=>btnEdit.onclick = edit(index));
-        Array.from(document.getElementsByClassName("deletePet")).forEach((btnDelete, index)=>btnDelete.onclick = deletePet(index));
+    
+   
 }
 
-function sendData(event){
+async function sendData(event){
     event.preventDefault();
-    const data = {
-        species : species.value,
-        name : name.value,
-        owner : owner.value
-    };
-    const action = btnSave.innerHTML;
-    switch(action){
-        case 'Edit':
+    try{
+        const data = {
+            species : species.value,
+            name : name.value,
+            owner : owner.value
+        };
+        let method = "POST";
+        let urlSend = url;
+        const action = btnSave.innerHTML;
+        
+        if(action==='Edit'){       
+            method = "PUT";
             pets[indice.value] = data;
-            break;
-        default:
-                pets.push(data);
-            break;
+            urlSend = `${url}/${indice.value}`;
+        }
+        const answer = await fetch(urlSend, {
+            method,
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+    
+        if(answer.ok){
+            showPets();
+            resetModal();
+        }
+
+    }catch(error){
+        throw error;
     }
-    showPets();
-    resetModal();
+    
+    
 }
 function edit(index){
     return function whenIClick(){
@@ -79,13 +106,24 @@ function resetModal(){
 }
 
 function deletePet(indice){
-    return function clickDelete(){
-        console.log('index', indice);
-        pets = pets.filter((pet, indicePet)=>indicePet !== indice);
-        showPets();
+    const urlSend = `${url}/${indice}`;
+    return async function clickDelete(){
+        try{
+            const answer = await fetch(urlSend, {
+                method: 'DELETE',            
+            }); 
+            if(answer.ok){
+                showPets();
+                resetModal();
+            }    
+        }catch(error){
+            throw error;
+        }       
     }
 }
 showPets();
+//call fetch API
+
 
 form.onsubmit = sendData;
 btnSave.onclick = sendData;

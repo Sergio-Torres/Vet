@@ -17,6 +17,26 @@ module.exports=((req, res)=>{
 
     //3.1 obtener el metodo http 
     const metodo = req.method.toLowerCase();
+
+    //paso 3.1.1 dar permisos de CORS escribiendo los headers
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader(
+        "Access-Control-Allow-Methods", 
+        "OPTIONS,GET,PUT,DELETE,POST"
+        );
+    
+    res.setHeader(
+        "Access-Control-Request-Methods", 
+        "OPTIONS,GET,PUT,DELETE,POST"
+        );
+   
+    //3.1.1 dar respuesta innmediana cuando el metodo sea options
+    if(metodo === 'options'){
+        res.writeHead(200); 
+        res.end(); 
+        return;              
+    }
     
     //3.2 obtener las variables del query url
     const { query={} } = urlParseada;

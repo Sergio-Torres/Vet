@@ -1,20 +1,20 @@
 module.exports = {    
     pets:[   
-        {Species:'Dog', Name:'trusqui', Owner:'Donald'},
-        {Species:'Cat', Name:'trusqui2', Owner:'Donald2'},
-        {Species:'Dog', Name:'trusqui3', Owner:'Donald3'},
+        {species:'Dog', name:'Trusqui', owner:'Donald'},
+        {species:'Cat', name:'Simon', owner:'Patric'},
+        {species:'Bird', name:'Noir', owner:'Miriam'},
         ],   
     vets:[   
-        {id:'1003402', Name:'Lucia', LastName:'Trump'},
-        {id:'100322', Name:'Andu', LastName:'Gregor'},
-        {id:'105502', Name:'Asta', LastName:'Endo'},
-        {id:'1004567', Name:'Elza', LastName:'Scarlett'},
+        {id:'1003402', name:'Lucia', lastName:'Trump'},
+        {id:'100322', name:'Andu', lastName:'Gregor'},
+        {id:'105502', name:'Asta', lastName:'Endo'},
+        {id:'1004567', name:'Elza', lastName:'Scarlett'},
         ],
     owners:[   
-        {id:'2003402', Name:'Mirame', LastName:'Uzumaki'},
-        {id:'200322', Name:'tow', LastName:'zero'},
-        {id:'205502', Name:'ana', LastName:'cleta'},
-        {id:'2004567', Name:'wiz', LastName:'khalifa'},
+        {id:'2003402', name:'Mirame', lastName:'Uzumaki'},
+        {id:'200322', name:'tow', lastName:'zero'},
+        {id:'205502', name:'ana', lastName:'cleta'},
+        {id:'2004567', name:'wiz', lastName:'khalifa'},
         ],
     consultations:[   
         {
