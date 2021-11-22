@@ -5,7 +5,7 @@ module.exports = function ownersHandler(owners){
                 if(owners[data.id]){
                     return callback(200, owners[data.id]);        
                 }
-                return callback(404, {mensaje: `owners con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Owner with index ${data.id} no found`});
             }
             callback(200,owners);
         },
@@ -19,20 +19,20 @@ module.exports = function ownersHandler(owners){
                     owners[data.id] = data.payload;
                     return callback(200,owners[data.id]);        
                 }
-                return callback(404, {mensaje: `owners con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Owner with index ${data.id} no found`});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not been sent"});
         },
         delete:(data, callback)=>{ //handlers
             if(typeof data.id !== "undefined"){
                 if(owners[data.id]){
                     owners = owners.filter(
                         (_owner, id)=>id != data.id);
-                    return callback(204, {mensaje: `elemente con id ${data.id} eliminada`});        
+                    return callback(204, {message: `Element with index ${data.id} removed`});        
                 }
-                return callback(404, {mensaje: `owners con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Owner with index ${data.id} no found`});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not been sent"});
         },
         
     }   

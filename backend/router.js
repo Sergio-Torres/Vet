@@ -15,6 +15,6 @@ module.exports ={
     consultations: consultations(means.consultations),
     
     noEncontrado:(data, callback)=>{
-        callback(404, {mensaje: 'no encontrado'});
+        callback(404, {mensaje: 'no found'});
     }
 };

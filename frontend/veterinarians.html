@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Css custom-->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>Vets</title>
@@ -46,16 +46,23 @@
       <div class="actions-menu">
       <!-- Button trigger modal -->
         <h1>Veretinarians</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          New
-        </button>
+        <div class="actions-menu-content">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            New
+          </button>
+          <div class="alert alert-danger alert-dismissible" role="alert">
+              <strong>Oops!</strong> something has failed, please try again.
+              <button type="button" class="Close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        </div>
       </div>
       <table class="table table-stripped table-hover">
           <thead class="thead-dark">
               <tr>
                   <th scope="col">#</th>
-                  <th scope="col">ID</th>
-                  <th scope="col">Country</th>
+                  <th scope="col">Identification</th>
                   <th scope="col">Name</th>
                   <th scope="col">Last name</th>
                   <th scope="col"></th>
@@ -80,10 +87,7 @@
               <input type="hidden" id="index">
               <div class="form-row">
                 <div class="col">
-                  <input type="text" id="ID"name="ID" class="form-control" placeholder="ID">
-                </div>
-                <div class="col">
-                  <input type="text" id="country" name="country" class="form-control" placeholder="Country">
+                  <input type="text" id="identification"name="identification" class="form-control" placeholder="identification">
                 </div>
               </div>
               <div class="form-row">

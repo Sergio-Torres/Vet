@@ -5,7 +5,7 @@ module.exports = function consultationsHandler(consultations){
                 if(consultations[data.id]){
                     return callback(200, consultations[data.id]);        
                 }
-                return callback(404, {mensaje: `consultations con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Consultation with index ${data.id} no found `});
             }
             callback(200,consultations);
         },
@@ -27,20 +27,20 @@ module.exports = function consultationsHandler(consultations){
                     };
                     return callback(200,consultations[data.id]);        
                 }
-                return callback(404, {mensaje: `consultations con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Consultation with index ${data.id} no found `});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not been sent"});
         },
         delete:(data, callback)=>{ //handlers
             if(typeof data.id !== "undefined"){
                 if(consultations[data.id]){
                     consultations = consultations.filter(
                         (_consultation, id)=>id != data.id);
-                    return callback(204, {mensaje: `elemente con id ${data.id} eliminada`});        
+                    return callback(204, {message: `Element with index ${data.id} removed`});        
                 }
-                return callback(404, {mensaje: `consultations con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Consultation with index ${data.id} no found `});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not been sent"});
         },
         
     }   

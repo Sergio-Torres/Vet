@@ -5,7 +5,7 @@ module.exports = function vetsHandler(vets){
                 if(vets[data.id]){
                     return callback(200, vets[data.id]);        
                 }
-                return callback(404, {mensaje: `vets con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Vet with index ${data.id} no found`});
             }
             callback(200,vets);
         },
@@ -19,20 +19,20 @@ module.exports = function vetsHandler(vets){
                     vets[data.id] = data.payload;
                     return callback(200,vets[data.id]);        
                 }
-                return callback(404, {mensaje: `vets con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Vet with index ${data.id} no found`});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not been sent"});
         },
         delete:(data, callback)=>{ //handlers
             if(typeof data.id !== "undefined"){
                 if(vets[data.id]){
                     vets = vets.filter(
                         (_vet, id)=>id != data.id);
-                    return callback(204, {mensaje: `elemente con id ${data.id} eliminada`});        
+                    return callback(204, {message: `Element with index ${data.id} remove`});        
                 }
-                return callback(404, {mensaje: `vets con indice ${data.id} non encontrado`});
+                return callback(404, {message: `Vet with index ${data.id} no found`});
             }
-            callback(400, {mensaje:"id no enviada"});
+            callback(400, {message:"id has not benn sent"});
         },
         
     }   
