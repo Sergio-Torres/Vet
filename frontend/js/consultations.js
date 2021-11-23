@@ -1,6 +1,9 @@
 const listConsultations = document.getElementById("list-consultations");
+const pet = document.getElementById("pet");
+
 let consultations =[];
-const url = "http://localhost:5000/consultations";
+let pets= [];
+const url = "http://localhost:5000";
 
 /*
     {
@@ -14,8 +17,9 @@ const url = "http://localhost:5000/consultations";
 */
 
 async function showConsultations(){
+    const entity = 'consultations'
     try{
-        const answer = await fetch(url);
+        const answer = await fetch(`${url}/${entity}`);
         const serverConsultations = await answer.json();
         if(Array.isArray(serverConsultations)){
             consultations = serverConsultations;
@@ -49,3 +53,27 @@ async function showConsultations(){
 }
 
 showConsultations();
+
+async function showPets(){
+    const entity = 'pets'
+    try{
+        const answer = await fetch(`${url}/${entity}`);
+        const serverPets = await answer.json();
+        if(Array.isArray(serverPets)){
+            pets= serverPets;
+        }
+
+        if(answer.ok){
+            pets.forEach((_pet, index)=>{
+                const actualOption = document.createElement("option");
+                actualOption.innerHTML = _pet.name;
+                actualOption.value = index;
+                pet.appendChild(actualOption);
+            })
+        }
+    }catch(error){
+        throw error;
+    }
+}
+
+showPets();
