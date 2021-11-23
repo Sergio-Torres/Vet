@@ -1,4 +1,4 @@
-module.exports = function consultationsHandler(consultations){
+module.exports = function consultationsHandler({consultations, vets, pets}){
     return {
         get:(data, callback)=>{ //handlers
             if(typeof data.id !== "undefined"){
@@ -7,7 +7,14 @@ module.exports = function consultationsHandler(consultations){
                 }
                 return callback(404, {message: `Consultation with index ${data.id} no found `});
             }
-            callback(200,consultations);
+            //list all queries
+            const consultationWithRelations = consultations.map((consultation)=>(
+                {...consultation, 
+                    pet: pets[consultation.pet],
+                    vet: vets[consultation.vet] 
+                }
+            ));
+            callback(200,consultationWithRelations);
         },
         post:(data, callback)=>{ //handlers
             let newConsultation = data.payload;

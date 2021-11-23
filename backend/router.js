@@ -12,7 +12,7 @@ module.exports ={
     pets: pets(means.pets),
     vets: vets(means.vets),  
     owners: owners(means.owners),
-    consultations: consultations(means.consultations),
+    consultations: consultations(means),
     
     noEncontrado:(data, callback)=>{
         callback(404, {mensaje: 'no found'});
