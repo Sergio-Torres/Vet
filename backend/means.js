@@ -11,10 +11,10 @@ module.exports = {
         {identification:'1004567', name:'Elza', lastName:'Scarlett'},
         ],
     owners:[   
-        {id:'2003402', name:'Mirame', lastName:'Uzumaki'},
-        {id:'200322', name:'tow', lastName:'zero'},
-        {id:'205502', name:'ana', lastName:'cleta'},
-        {id:'2004567', name:'wiz', lastName:'khalifa'},
+        {identification:'2003402', name:'Mirame', lastName:'Uzumaki'},
+        {identification:'200322', name:'tow', lastName:'zero'},
+        {identification:'205502', name:'ana', lastName:'cleta'},
+        {identification:'2004567', name:'wiz', lastName:'khalifa'},
         ],
     consultations:[   
         {

@@ -34,7 +34,7 @@ async function showVets(){
                 Array.from(document.getElementsByClassName("deleteVet")).forEach((btnDelete, index)=>btnDelete.onclick = deleteVet(index));
                 return;
         }
-        listVet.innerHTML = ` <tr>
+        listVets.innerHTML = ` <tr>
                     <td colspan="5">No veterinarians</td>
                 </tr>`;
     }catch(error){
