@@ -5,7 +5,7 @@ const owner = document.getElementById("owner");
 const indice = document.getElementById("index");
 const form = document.getElementById("form");
 const btnSave = document.getElementById("btnSave");
-const url = "http://localhost:5000/pets";
+const url = "https://vet-backend-two.vercel.app/pets";
 
 let pets = [];
 

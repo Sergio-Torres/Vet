@@ -11,18 +11,8 @@ let consultations =[];
 let pets= [];
 let vets= [];
 
-const url = "http://localhost:5000";
+const url = "https://vet-backend-two.vercel.app";
 
-/*
-    {
-            pet: 0, 
-            vet:0,  
-            dateCreation: new Date(),
-            dateEdit: new Date(),
-            record: '',
-            diagnosis: '',
-    } 
-*/
 
 async function showConsultations(){
     const entity = 'consultations'
