@@ -17,13 +17,13 @@ module.exports = {
         {identification:'2004567', name:'wiz', lastName:'khalifa'},
         ],
     consultations:[   
-        {
+               {
             pet: 0, 
             vet:0,  
             dateCreation: new Date(),
             dateEdit: new Date(),
             record: '',
             diagnosis: '',
-        }        
+        } 
          ]   
 }

@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Consultation<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="index.html">Pets<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="veterinarians.html">Veterinarians</a>
@@ -45,9 +45,18 @@
       <div class="actions-menu">
       <!-- Button trigger modal -->
         <h1>Consultations</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          New
-        </button>
+        <div class="actions-menu-content">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            New
+          </button>
+          <div class="alert alert-danger alert-dismissible" role="alert">
+              <strong>Oops!</strong> something has failed, please try again.
+              <button type="button" class="Close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          
+        </div>
       </div>
       <table class="table table-stripped table-hover">
           <thead class="thead-dark">
@@ -72,35 +81,51 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New pet</h5>
+            <h5 class="modal-title" id="exampleModalLabel">New Consultation</h5>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              Missing data
+              <button type="button" class="Close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form id="form">
+          <div class="modal-body">     
+            <form class="was-validated" id="form" novalidate>
               <input type="hidden" id="index">
-              <div class="form-row">
-                <div class="col">
-                  <select id="pet" class="form-control">
-                    <option>Select pet</option>
+              <div class="form-row mb-3">
+                  <select id="pet" class="form-control temporal-class" required aria-label="select example">
+                    <option value="">Select Pet</option>
                   </select>
-                </div>
               </div>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" id="name"name="name" class="form-control" placeholder="Name">
-                </div>
-                <div class="col">
-                  <input type="text" id="owner" name="owner" class="form-control" placeholder="Owner">
-                </div>
+               <div class="form-row mb-3">
+                  <select id="vet" class="form-control" required aria-label="select example">
+                    <option value="">Select Veterinarian</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <textarea  class="form-control is-invalid" placeholder="Record" id="record" required></textarea>
+              </div>
                 
+              <div class="mb-3">
+                <select class="form-control" id="diagnosis" required aria-label="select example">
+                  <option value="">Select Diagnosis</option>
+                    <option>Canine parvovirus ("parvo")</option>
+                    <option>Rabies</option>
+                    <option>Kennel cough</option> 
+                    <option>Parasites</option>
+                  </select>
               </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" id="btnSave" data-dismiss="modal" class="btn btn-primary">Save</button>
+              <div class="modal-footer"> 
+                <div class="mb-3">
+                  <button type="button" id="btnClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+                </div>
+              </div>
           </div>
         </div>
       </div>

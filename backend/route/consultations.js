@@ -10,8 +10,8 @@ module.exports = function consultationsHandler({consultations, vets, pets}){
             //list all queries
             const consultationWithRelations = consultations.map((consultation)=>(
                 {...consultation, 
-                    pet: pets[consultation.pet],
-                    vet: vets[consultation.vet] 
+                    pet:{...pets[consultation.pet], id: consultation.pet},
+                    vet: {...vets[consultation.vet], id: consultation.vet} 
                 }
             ));
             callback(200,consultationWithRelations);
